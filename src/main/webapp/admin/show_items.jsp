@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>판매 물품 목록</title>
+<title>판매 상품 목록</title>
 </head>
 <body>
 <table id="items">
@@ -24,7 +24,6 @@
 <td>종류2</td>
 <td>옵션</td>
 <td>가격</td>
-<td>부가세</td>
 <td>할인률</td>
 <td>판매량</td>
 <td>재고량</td>
@@ -33,34 +32,40 @@
 </tr>
 
 <%
-	//오라클 DB 접속, scott/tiger
-	String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	String user = "scott";
-	String password = "tiger";
-	Class.forName("oracle.jdbc.driver.OracleDriver");
-	Connection con = DriverManager.getConnection(url, user, password);
+	try{
+		//오라클 DB 접속, scott/tiger
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "scott";
+		String password = "tiger";
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con = DriverManager.getConnection(url, user, password);
 
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
-	pstmt = con.prepareStatement("select * from items");
-	rs = pstmt.executeQuery();
-	if(rs.next()){
-		//있는대로 하나씩 하나씩 출력하자.
-		//물품 번호에는 링크를 줘서 수정할 수 있게, 마지막에는 삭제버튼 있어서 삭제하도록
-		out.write("<td><a href='edit_item.jsp?item_number="+rs.getInt(1)+"'>"+rs.getInt(1)+"</a></td>"
-				+ "<td>"+rs.getString(2)+"</td>"
-				+ "<td>"+rs.getString(3)+"</td>"
-				+ "<td>"+rs.getString(4)+"</td>"
-				+ "<td>"+rs.getString(5)+"</td>"
-				+ "<td>"+rs.getInt(6)+"</td>"
-				+ "<td>"+rs.getInt(7)+"</td>"
-				+ "<td>"+rs.getInt(8)+"</td>"
-				+ "<td>"+rs.getInt(9)+"</td>"
-				+ "<td>"+rs.getString(10)+"</td>"
-				+ "<td>"+rs.getString(11)+"</td>"
-				+ "<td><a href='delete_item_ok.jsp?item_number"+rs.getInt(1)+"'>상품 삭제</a></td></tr>"
-				);
+		pstmt = con.prepareStatement("select * from items");
+		rs = pstmt.executeQuery();
+		while(rs.next()){
+			//있는대로 하나씩 하나씩 출력하자.
+			//물품 번호에는 링크를 줘서 수정할 수 있게, 마지막에는 삭제버튼 있어서 삭제하도록
+			out.write("<td><a href='edit_item.jsp?item_number="+rs.getInt(1)+"'>"+rs.getInt(1)+"</a></td>"
+					+ "<td>"+rs.getString(2)+"</td>"
+					+ "<td>"+rs.getString(3)+"</td>"
+					+ "<td>"+rs.getString(4)+"</td>"
+					+ "<td>"+rs.getString(5)+"</td>"
+					+ "<td>"+rs.getInt(6)+"</td>"
+					+ "<td>"+rs.getInt(7)+"</td>"
+					+ "<td>"+rs.getInt(8)+"</td>"
+					+ "<td>"+rs.getInt(9)+"</td>"
+					+ "<td>"+rs.getString(10)+"</td>"
+					+ "<td>"+rs.getString(11)+"</td>"
+					+ "<td><a href='delete_item_ok.jsp?item_number"+rs.getInt(1)+"'>상품 삭제</a></td></tr>"
+					);
+		}
+
+		System.out.println("DB 접속 성공");
+	}catch(Exception e){
+		System.out.println("DB 접속 실패");
 	}
 %>
 

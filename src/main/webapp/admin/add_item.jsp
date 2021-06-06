@@ -13,19 +13,19 @@
 <body>
 <form name="form" method="post" action="add_item_ok.jsp">
 <table>
-<tr><td>상품명</td>
+<tr><td>상품명*</td>
 <td><input type="text" name="item_name"></td></tr>
-<tr><td>종류1</td>
+<tr><td>상품종류1*</td>
 <td><input type="text" name="item_type1"></td></tr>
-<tr><td>종류2</td>
-<td><input type="text" name="item_type1"></td></tr>
+<tr><td>상품종류2</td>
+<td><input type="text" name="item_type2"></td></tr>
 <tr><td>옵션</td>
 <td><input type="text" name="item_option"></td></tr>
-<tr><td>가격</td>
+<tr><td>가격*</td>
 <td><input type="number" name="item_cost"></td></tr>
-<tr><td>부가세</td>
-<td><input type="number" name="item_discharge_rate"></td></tr>
-<tr><td>재고량</td>
+<tr><td>할인률</td>
+<td><input type="number" name="item_discount_rate"></td></tr>
+<tr><td>재고량*</td>
 <td><input type="number" name="item_remains"></td></tr>
 <tr><td>메모</td>
 <td><input type="text" name="item_memo"></td></tr>
@@ -33,6 +33,29 @@
 <script>
 function click_register(){
 	//각 항목들이 입력되었는 지 검사
+	if(form.item_name.value==""){
+		form.item_name.focus();
+		alert("상품명을 입력해주세요.");
+		return;
+	}
+	if(form.item_type1.value==""){
+		form.item_type1.focus();
+		alert("상품종류1을 입력해주세요.");
+		return;
+	}
+	if(form.item_cost.value==""){
+		form.item_cost.focus();
+		alert("가격을 입력해주세요.");
+		return;
+	}
+	if(form.item_remains.value==""){
+		form.item_remains.focus();
+		alert("재고량을 입력해주세요.");
+		return;
+	}
+	//상품종류2, 옵션, 할인률, 메모는 입력 안해도 됨
+	//입력 안하면 디폴트값 주면 됨
+	form.submit();
 }
 </script>
 </table>
