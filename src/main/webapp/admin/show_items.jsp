@@ -1,3 +1,4 @@
+<%@page import="company.portfolio.shoppingmall.HanConv"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -59,7 +60,7 @@
 					+ "<td>"+rs.getInt(9)+"</td>"
 					+ "<td>"+rs.getString(10)+"</td>"
 					+ "<td>"+rs.getString(11)+"</td>"
-					+ "<td><a href='delete_item_ok.jsp?item_number"+rs.getInt(1)+"'>惑前 昏力</a></td></tr>"
+					+ "<td><a href='delete_item_ok.jsp?item_number="+rs.getInt(1)+"'>惑前 昏力</a></td></tr>"
 					);
 		}
 
