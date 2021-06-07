@@ -22,7 +22,7 @@
 <tr><td>옵션</td>
 <td><input type="text" name="item_option"></td></tr>
 <tr><td>가격*</td>
-<td><input type="number" name="item_cost"></td></tr>
+<td><input type="number" name="item_price"></td></tr>
 <tr><td>할인률</td>
 <td><input type="number" name="item_discount_rate"></td></tr>
 <tr><td>재고량*</td>
@@ -43,8 +43,8 @@ function click_register(){
 		alert("상품종류1을 입력해주세요.");
 		return;
 	}
-	if(form.item_cost.value==""){
-		form.item_cost.focus();
+	if(form.item_price.value==""){
+		form.item_price.focus();
 		alert("가격을 입력해주세요.");
 		return;
 	}

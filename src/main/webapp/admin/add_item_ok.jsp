@@ -26,7 +26,7 @@
 	String item_type1 = HanConv.toKor((String)request.getParameter("item_type1"));
 	String item_type2 = HanConv.toKor((String)request.getParameter("item_type2"));
 	String item_option = HanConv.toKor((String)request.getParameter("item_option"));
-	int item_cost = Integer.parseInt((String)request.getParameter("item_cost"));
+	int item_price = Integer.parseInt((String)request.getParameter("item_price"));
 	int item_discount_rate = 0;
 	try{
 		item_discount_rate = Integer.parseInt((String)request.getParameter("item_discount_rate"));
@@ -56,14 +56,14 @@
 		//입력할 번호는 최고 번호보다 1 크게
 		insert_item_number = max_item_number + 1;
 
-		pstmt = con.prepareStatement("insert into items(item_number, item_name, item_type1, item_type2, item_option, item_cost, item_discount_rate, item_sells, item_remains, item_register_date, item_memo)"
+		pstmt = con.prepareStatement("insert into items(item_number, item_name, item_type1, item_type2, item_option, item_price, item_discount_rate, item_sells, item_remains, item_register_date, item_memo)"
 		+"values(?,?,?,?,?,?,?,?,?,?,?)");
 		pstmt.setInt(1, insert_item_number);
 		pstmt.setString(2, item_name);
 		pstmt.setString(3, item_type1);
 		pstmt.setString(4, item_type2);
 		pstmt.setString(5, item_option);
-		pstmt.setInt(6, item_cost);
+		pstmt.setInt(6, item_price);
 		pstmt.setInt(7, item_discount_rate);
 		pstmt.setInt(8, 0);				//item_sells
 		pstmt.setInt(9, item_remains);
@@ -93,7 +93,7 @@
 	}
 	if(<%=add_success%>==false){
 		alert("상품을 추가에 실패했습니다.");
-		location.href="login.jsp";
+		location.href="show_items.jsp";
 	}
 </script>
 </body>

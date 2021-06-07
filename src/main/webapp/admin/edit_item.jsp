@@ -21,7 +21,7 @@
 	String item_type1 = null;
 	String item_type2 = null;
 	String item_option = null;
-	String item_cost = null;
+	String item_price = null;
 	String item_discount_rate = null;
 	String item_sells = null;
 	String item_remains = null;
@@ -48,7 +48,7 @@
 			item_type1 = rs.getString(3);
 			item_type2 = rs.getString(4);
 			item_option = rs.getString(5);
-			item_cost = rs.getString(6);
+			item_price = rs.getString(6);
 			item_discount_rate = rs.getString(7);
 			item_sells = rs.getString(8);
 			item_remains = rs.getString(9);

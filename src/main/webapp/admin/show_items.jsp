@@ -14,10 +14,21 @@
 <head>
 <meta charset="EUC-KR">
 <title>판매 상품 목록</title>
+<style>
+table{
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+td{
+	border: 1px solid black;
+	padding: 10px;
+	min-width: 80px;
+	text-align: right;
+}
+</style>
 </head>
 <body>
 <table id="items">
-<tr><td><a href="add_item.jsp">상품 등록</a></td></tr>
 <tr>
 <td>상품번호</td>
 <td>상품명</td>
@@ -33,6 +44,7 @@
 </tr>
 
 <%
+	boolean show_items_success;
 	try{
 		//오라클 DB 접속, scott/tiger
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -44,7 +56,7 @@
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		pstmt = con.prepareStatement("select * from items");
+		pstmt = con.prepareStatement("select * from items order by item_number desc");
 		rs = pstmt.executeQuery();
 		while(rs.next()){
 			//있는대로 하나씩 하나씩 출력하자.
@@ -64,17 +76,28 @@
 					);
 		}
 
-		System.out.println("DB 접속 성공");
+		show_items_success = true;
+		System.out.println("상품 조회 성공");
 	}catch(Exception e){
-		System.out.println("DB 접속 실패");
+		show_items_success = false;
+		System.out.println("상품 조회 실패");
 	}
 %>
 
 </table>
+<a href="add_item.jsp">상품 등록</a>
+
 <script>
 	if("<%=verified%>" != "verified"){
 		alert("관리자로 로그인되지 않았습니다. 관리자로 로그인해주세요.");
 		location.href="login.jsp";
+	}
+	if(<%=show_items_success%>==true){
+		alert("상품 조회 성공");
+	}
+	if(<%=show_items_success%>==false){
+		alert("상품 조회에 실패했습니다.");
+		history.back();
 	}
 </script>
 </body>

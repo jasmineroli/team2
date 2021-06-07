@@ -13,8 +13,7 @@
 <body>
 <div id="link" hidden>
 <a href="show_items.jsp">惑前 包府 其捞瘤</a><br>
-<a href="show_items.jsp">概免 包府 其捞瘤</a><br>
-<a href="show_items.jsp">惑前 包府 其捞瘤</a><br>
+<a href="show_orders.jsp">概免 包府 其捞瘤</a><br>
 </div>
 <script>
 	if("<%=verified%>" == "verified"){
